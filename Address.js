@@ -16,12 +16,13 @@ export default function Address({ route, navigation }) {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDLXQk32DrNut9-qjiIuQEp8FHXevlDcuY",
-  authDomain: "addressbook-d10d2.firebaseapp.com",
-  projectId: "addressbook-d10d2",
-  storageBucket: "addressbook-d10d2.appspot.com",
-  messagingSenderId: "422685704180",
-  appId: "1:422685704180:web:a906ec150103cabb2383a1"
+  apiKey: "AIzaSyBZa8ASBVP4WQTJnu8in6QJD3ziLWRRlZg",
+  authDomain: "addressbook1-56ed7.firebaseapp.com",
+  projectId: "addressbook1-56ed7",
+  storageBucket: "addressbook1-56ed7.appspot.com",
+  messagingSenderId: "261588262991",
+  appId: "1:261588262991:web:2f6b2cca18bfe4213e4a3a",
+  measurementId: "G-9W73NPDEM7"
 };
 //DATABASE URL MISSING > COMPARE TO SHOPPINGLISTFIREBASE
 
@@ -54,6 +55,19 @@ const deleteAddress = (key) => {
         ref(database, 'items/' + key),
     )
 }
+
+const listSeparator = () => {
+  return(
+    <View
+      style={{
+        height: 5,
+        width: '80%',
+        backgroundColor: '#fff',
+        marginLeft: '80%'
+      }}
+    />
+  );
+};
 
 renderItem = ({ item }) => {
     <ListItem bottomDivider>
