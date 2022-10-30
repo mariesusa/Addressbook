@@ -43,18 +43,26 @@ useEffect(() => {
     });
 }, []);
 
-useEffect(() => {
+const saveAddress = () => {
     push(
         ref(database, 'items/'),
         { 'data': data }
     );
-});
+};
 
 const deleteAddress = (key) => {
     removeEventListener(
         ref(database, 'items/' + key),
     )
 }
+
+useEffect(() => {
+  const { fullAddress } = route.params || false;
+  
+  if (fullAddress) {
+    saveAddress(fullAddress);
+  }
+  }, [route.params?.fullAddress]);
 
 const listSeparator = () => {
   return(
@@ -89,9 +97,11 @@ renderItem = ({ item }) => {
     />
 
     <Button
-      containerStyle={{ width: '60%' }}
-      onPress={() => navigation.navigate('Map', { address }) }
       title='SHOW ON MAP'
+      containerStyle={{ width: '60%' }}
+      onPress={() => {(navigation.navigate('Map', { address: address }));
+      setAddress('');
+    }}
     />
 
     <FlatList

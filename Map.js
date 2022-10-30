@@ -16,15 +16,19 @@ const initial = {
 
 const { address } = route.params;
 const [geolocation, setGeolocation] = useState(initial);
+const [fullAddress, setFullAddress] = useState('');
 
 useEffect(() => {
     (async ({address}) => {
     try {
         const response = await fetch(`http://www.mapquestapi.com/geocoding/v1/address?key=r0vb5J2B0gkhcNQ7YyQfNAk8fKMqFBsa&location=${address}`);
         const data = await response.json();
+
+        const location = data.results[0].locations[0];
     
         const { lat, lng } = data.results[0].locations[0].latLng;
-        setGeolocation({ ...geolocation, latitude: lat, longitude: lng })
+        setGeolocation({ ...geolocation, latitude: lat, longitude: lng });
+        setFullAddress(`${location.street} ${location.adminArea6} ${location.adminArea5}`);
         } catch (error) {
             Alert.alert('Error', error);
         }
@@ -40,14 +44,14 @@ useEffect(() => {
             region={ geolocation }>
 
             <Marker
-                coordinate={ geolocation }
+                coordinate={ fullAddress }
             />
         </MapView>
 
         <Button
-            containerStyle={{ width: '60%' }}
-            onPress={() => navigation.navigate('Address', { address }) }
             title='SAVE LOCATION'
+            containerStyle={{ width: '60%' }}
+            onPress={() => navigation.navigate('Address', { fullAddress: fullAddress }) }
         />
     
         </View>
