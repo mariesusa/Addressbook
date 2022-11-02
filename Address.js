@@ -17,7 +17,7 @@ export default function Address({ route, navigation }) {
 const firebaseConfig = {
   apiKey: "AIzaSyBZa8ASBVP4WQTJnu8in6QJD3ziLWRRlZg",
   authDomain: "addressbook1-56ed7.firebaseapp.com",
-
+  databaseURL: "https://addressbook1-56ed7-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "addressbook1-56ed7",
   storageBucket: "addressbook1-56ed7.appspot.com",
   messagingSenderId: "261588262991",

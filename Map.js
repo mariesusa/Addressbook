@@ -45,6 +45,7 @@ useEffect(() => {
 
             <Marker
                 coordinate={ geolocation }
+                title={ fullAddress }
             />
         </MapView>
 
