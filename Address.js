@@ -9,7 +9,6 @@ import { getDatabase, push, ref, onValue, remove } from'firebase/database';
 
 export default function Address({ route, navigation }) {
   console.log( route );
-  const { data } = route.params;
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,13 +17,13 @@ export default function Address({ route, navigation }) {
 const firebaseConfig = {
   apiKey: "AIzaSyBZa8ASBVP4WQTJnu8in6QJD3ziLWRRlZg",
   authDomain: "addressbook1-56ed7.firebaseapp.com",
+
   projectId: "addressbook1-56ed7",
   storageBucket: "addressbook1-56ed7.appspot.com",
   messagingSenderId: "261588262991",
   appId: "1:261588262991:web:2f6b2cca18bfe4213e4a3a",
   measurementId: "G-9W73NPDEM7"
 };
-//DATABASE URL MISSING > COMPARE TO SHOPPINGLISTFIREBASE
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -46,7 +45,7 @@ useEffect(() => {
 const saveAddress = () => {
     push(
         ref(database, 'items/'),
-        { 'data': data }
+        { 'fullAddress': fullAddress }
     );
 };
 
@@ -92,7 +91,7 @@ renderItem = ({ item }) => {
      <Input
      containerStyle={{ marginTop: '15%' }}
       placeholder='Type address here' label='PLACEFINDER'
-      onChangeText={ address => setAddress(address) }
+      onChangeText={ text => setAddress(text) }
       value={ address }
     />
 

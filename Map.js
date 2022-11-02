@@ -26,7 +26,7 @@ useEffect(() => {
 
         const location = data.results[0].locations[0];
     
-        const { lat, lng } = data.results[0].locations[0].latLng;
+        const { lat, lng } = location.latLng;
         setGeolocation({ ...geolocation, latitude: lat, longitude: lng });
         setFullAddress(`${location.street} ${location.adminArea6} ${location.adminArea5}`);
         } catch (error) {
@@ -44,7 +44,7 @@ useEffect(() => {
             region={ geolocation }>
 
             <Marker
-                coordinate={ fullAddress }
+                coordinate={ geolocation }
             />
         </MapView>
 
